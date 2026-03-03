@@ -1,0 +1,12 @@
+﻿# Local deployment/cache
+.wrangler/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs/temp
+*.log
+*.tmp

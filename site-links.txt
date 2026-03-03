@@ -1,0 +1,16 @@
+# 站点链接清单（可编辑）
+# 格式（推荐三语）：
+# 中文标题 | URL | 中文简介 | 日文标题 | 日文简介 | 英文标题 | 英文简介
+# 说明：
+# 1) 每行一个链接，使用英文竖线分隔
+# 2) 以 # 开头的是注释，不会显示
+# 3) 删除一行=前台删除；新增一行=前台新增
+
+养老金计算器 | https://example.com/pension-tool | 退休金测算页面示例 | 年金計算ツール | 年金試算ページの例 | Pension Calculator | Sample retirement calculation page
+租房申请指南 | https://example.com/rental-guide | 政策信息与办理路径说明 | 賃貸申請ガイド | 制度情報と申請手順の説明 | Rental Application Guide | Policy info and application steps
+内容发布工具 | https://example.com/content-tool | 自动化发布与素材管理 | コンテンツ配信ツール | 自動配信と素材管理 | Content Publishing Tool | Automated publishing and asset management
+客户预约页 | https://example.com/booking | 咨询预约与线索收集页面 | 予約ページ | 相談予約とリード収集ページ | Client Booking Page | Inquiry booking and lead capture
+数据看板 | https://example.com/dashboard | 访问、转化与渠道效果统计 | データダッシュボード | 流入・CV・チャネル効果の可視化 | Data Dashboard | Traffic, conversion, and channel performance
+作品总览 | https://example.com/portfolio | 已上线网站与项目合集 | 実績一覧 | 公開済みサイトとプロジェクト一覧 | Portfolio Overview | Collection of launched sites and projects
+门店地图优化页 | https://example.com/map-optimization | 地图资料完善与本地搜索优化案例 | 店舗マップ最適化 | 地図情報整備とローカルSEO事例 | Map Optimization Page | Profile optimization and local search case
+AI 工作流演示站 | https://example.com/ai-workflow | 从需求到交付的自动化流程演示 | AIワークフローデモ | 要件定義から納品までの自動化例 | AI Workflow Demo | Automation flow from request to delivery
