@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --font-geist-sans: "GeistSans";
   --font-geist-mono: "GeistMono";
 }
@@ -66,6 +66,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.site-logo {
+  height: 68px;
+  width: auto;
+  display: block;
+}
+
 .hero-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -90,7 +96,7 @@ body {
 }
 
 .hero-name {
-  font-family: "Aa焦糖体", "AaJiaoTangTi", "JiaoTangTi", "ZCOOL KuaiLe", "Noto Sans SC", sans-serif;
+  font-family: "AaJiaoTangTi", "JiaoTangTi", "ZCOOL KuaiLe", "Noto Sans SC", sans-serif;
   font-size: clamp(42px, 6vw, 70px);
   font-weight: 400;
   line-height: 1.1;
@@ -271,18 +277,22 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 38px;
+  min-height: 38px;
+  height: auto;
   width: 100%;
   min-width: 0;
-  padding: 0 8px;
+  padding: 6px 8px;
   border-radius: 0;
   border: 1px solid #d4d4d8;
   background: #f5f5f5;
   color: #52525b;
-  font-size: 13px !important;
+  font-size: clamp(11px, 0.85vw, 13px) !important;
   font-weight: 500;
-  line-height: 1;
-  white-space: nowrap;
+  line-height: 1.25;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 main .service-tag {
@@ -456,6 +466,35 @@ main li {
 }
 
 @media (max-width: 768px) {
+  #desktopNav {
+    display: flex !important;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 6px;
+    padding: 4px;
+  }
+
+  #desktopNav a {
+    flex: 0 0 auto;
+  }
+
+  #menuBtn,
+  #mobileNav {
+    display: none !important;
+  }
+
+  footer .max-w-6xl {
+    padding-top: 32px !important;
+    padding-bottom: 20px !important;
+  }
+
+  #footerLinks {
+    flex-direction: row !important;
+    gap: 14px !important;
+    flex-wrap: nowrap !important;
+  }
+
   main section {
     margin-top: 20px !important;
     border-radius: 20px !important;
@@ -463,8 +502,17 @@ main li {
   }
 
   #hero {
-    height: 62vh !important;
-    min-height: 420px !important;
+    height: 86vh !important;
+    min-height: 760px !important;
+    overflow: hidden !important;
+  }
+
+  #hero > .absolute.inset-0 {
+    position: absolute !important;
+    inset: 0 !important;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 26px;
   }
 
   #hero h1 {
@@ -478,8 +526,23 @@ main li {
 
   .hero-inner {
     flex-direction: column-reverse;
-    gap: 28px;
+    gap: 18px;
     text-align: center;
+  }
+
+  .hero-avatar-wrap {
+    margin-top: 4px;
+  }
+
+  .avatar-frame {
+    width: 210px;
+    height: 210px;
+  }
+
+  .avatar-img {
+    width: 194px;
+    height: 194px;
+    margin: 8px;
   }
 
   .hero-bio {
@@ -510,21 +573,11 @@ main li {
   }
 
   .cap-bubbles {
-    position: static;
-    width: 100%;
-    grid-template-columns: 1fr;
-    gap: 8px;
-    margin-top: 14px !important;
+    display: none !important;
   }
 
   .bubble-side-trigger {
-    position: static;
-    margin-top: 10px;
-  }
-
-  .cap-bubble {
-    border-radius: 24px;
-    padding: 16px;
+    display: none !important;
   }
 
   #services article,
@@ -553,3 +606,7 @@ main li {
     font-size: 30px !important;
   }
 }
+
+
+
+

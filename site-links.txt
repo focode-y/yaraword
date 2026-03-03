@@ -6,7 +6,7 @@
 # 2) 以 # 开头的是注释，不会显示
 # 3) 删除一行=前台删除；新增一行=前台新增
 
-养老金计算器 | https://example.com/pension-tool | 退休金测算页面示例 | 年金計算ツール | 年金試算ページの例 | Pension Calculator | Sample retirement calculation page
+养老金计算器 | https://tool.yaracodes.com | 退休金测算页面示例 | 年金計算ツール | 年金試算ページの例 | Pension Calculator | Sample retirement calculation page
 租房申请指南 | https://example.com/rental-guide | 政策信息与办理路径说明 | 賃貸申請ガイド | 制度情報と申請手順の説明 | Rental Application Guide | Policy info and application steps
 内容发布工具 | https://example.com/content-tool | 自动化发布与素材管理 | コンテンツ配信ツール | 自動配信と素材管理 | Content Publishing Tool | Automated publishing and asset management
 客户预约页 | https://example.com/booking | 咨询预约与线索收集页面 | 予約ページ | 相談予約とリード収集ページ | Client Booking Page | Inquiry booking and lead capture
