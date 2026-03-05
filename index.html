@@ -40,7 +40,6 @@
           <button id="menuCloseBtn" class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700">×</button>
         </div>
         <nav class="flex flex-col gap-2" id="mobileNavLinks">
-          <a href="#hero" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">首页</a>
           <a href="#services" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">个人服务</a>
           <a href="#links" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">案例展示</a>
           <a href="#process" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">合作流程</a>
@@ -255,7 +254,8 @@
       localStorage.setItem("site_lang",lang);
       document.documentElement.lang=lang==="ja"?"ja":lang==="en"?"en":"zh-CN";
       document.title = lang==="ja" ? "Yara Code | デジタルマーケティングとブランド構築" : lang==="en" ? "Yara Code | Digital Marketing and Brand Building" : "Yara Code | 数字化营销与品牌建设";
-      document.querySelectorAll("#desktopNav a, #mobileNavLinks a").forEach((n,i)=>n.textContent=d.nav[i%5]);
+      document.querySelectorAll("#desktopNav a").forEach((n,i)=>n.textContent=d.nav[i]||"");
+      document.querySelectorAll("#mobileNavLinks a").forEach((n,i)=>n.textContent=d.nav[i+1]||"");
       document.getElementById("mobileMenuTitle").textContent=(lang==="zh"?"菜单":(d.menu||"Menu"));
       document.getElementById("heroKicker").textContent=d.hero[0] || "";
       if ((d.hero || []).length >= 6) {
