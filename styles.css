@@ -467,21 +467,11 @@ main li {
 
 @media (max-width: 768px) {
   #desktopNav {
-    display: flex !important;
-    max-width: 100%;
-    overflow-x: auto;
-    white-space: nowrap;
-    gap: 6px;
-    padding: 4px;
-  }
-
-  #desktopNav a {
-    flex: 0 0 auto;
-  }
-
-  #menuBtn,
-  #mobileNav {
     display: none !important;
+  }
+
+  #menuBtn {
+    display: flex !important;
   }
 
   footer .max-w-6xl {
