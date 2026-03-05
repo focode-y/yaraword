@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="i18n-pending">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +8,66 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./styles.css" />
+  <style>
+    html.i18n-pending #desktopNav a,
+    html.i18n-pending #mobileNavLinks a,
+    html.i18n-pending #mobileMenuTitle,
+    html.i18n-pending #heroKicker,
+    html.i18n-pending #heroName,
+    html.i18n-pending #heroTitle,
+    html.i18n-pending #heroSub,
+    html.i18n-pending #heroCta1,
+    html.i18n-pending #heroCta2,
+    html.i18n-pending #intentTitle,
+    html.i18n-pending #intentSub,
+    html.i18n-pending #intentCards,
+    html.i18n-pending #servicesTitle,
+    html.i18n-pending #servicesCards,
+    html.i18n-pending #linksTitle,
+    html.i18n-pending #linksSub,
+    html.i18n-pending #processTitle,
+    html.i18n-pending #processSub,
+    html.i18n-pending #processCards,
+    html.i18n-pending #contactTitle,
+    html.i18n-pending #contactSub,
+    html.i18n-pending #contactBtn,
+    html.i18n-pending #footerIntro,
+    html.i18n-pending #footerExplore,
+    html.i18n-pending #footerLinks,
+    html.i18n-pending #footerEmailTitle,
+    html.i18n-pending #footerCopy { visibility: hidden; }
+  </style>
+  <noscript>
+    <style>
+      html.i18n-pending #desktopNav a,
+      html.i18n-pending #mobileNavLinks a,
+      html.i18n-pending #mobileMenuTitle,
+      html.i18n-pending #heroKicker,
+      html.i18n-pending #heroName,
+      html.i18n-pending #heroTitle,
+      html.i18n-pending #heroSub,
+      html.i18n-pending #heroCta1,
+      html.i18n-pending #heroCta2,
+      html.i18n-pending #intentTitle,
+      html.i18n-pending #intentSub,
+      html.i18n-pending #intentCards,
+      html.i18n-pending #servicesTitle,
+      html.i18n-pending #servicesCards,
+      html.i18n-pending #linksTitle,
+      html.i18n-pending #linksSub,
+      html.i18n-pending #processTitle,
+      html.i18n-pending #processSub,
+      html.i18n-pending #processCards,
+      html.i18n-pending #contactTitle,
+      html.i18n-pending #contactSub,
+      html.i18n-pending #contactBtn,
+      html.i18n-pending #footerIntro,
+      html.i18n-pending #footerExplore,
+      html.i18n-pending #footerLinks,
+      html.i18n-pending #footerEmailTitle,
+      html.i18n-pending #footerCopy { visibility: visible; }
+    </style>
+  </noscript>
 </head>
 <body>
   <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-xl">
@@ -295,6 +355,7 @@
       document.getElementById("footerEmailTitle").textContent=d.footer[3];
       document.getElementById("footerCopy").textContent=d.footer[4];
       document.querySelectorAll("#langSwitch a").forEach((btn,idx)=>{const on=(idx===0&&lang==='zh')||(idx===1&&lang==='ja')||(idx===2&&lang==='en'); btn.classList.toggle('bg-slate-900',on); btn.classList.toggle('text-white',on); btn.classList.toggle('text-slate-600',!on);});
+      document.documentElement.classList.remove("i18n-pending");
     }
 
     document.querySelectorAll("#langSwitch a").forEach((btn,idx)=>btn.addEventListener("click",(e)=>{e.preventDefault(); render(idx===0?'zh':idx===1?'ja':'en');}));
