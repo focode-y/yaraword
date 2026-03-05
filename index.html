@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="zh-CN" class="i18n-pending">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,66 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./styles.css" />
-  <style>
-    html.i18n-pending #desktopNav a,
-    html.i18n-pending #mobileNavLinks a,
-    html.i18n-pending #mobileMenuTitle,
-    html.i18n-pending #heroKicker,
-    html.i18n-pending #heroName,
-    html.i18n-pending #heroTitle,
-    html.i18n-pending #heroSub,
-    html.i18n-pending #heroCta1,
-    html.i18n-pending #heroCta2,
-    html.i18n-pending #intentTitle,
-    html.i18n-pending #intentSub,
-    html.i18n-pending #intentCards,
-    html.i18n-pending #servicesTitle,
-    html.i18n-pending #servicesCards,
-    html.i18n-pending #linksTitle,
-    html.i18n-pending #linksSub,
-    html.i18n-pending #processTitle,
-    html.i18n-pending #processSub,
-    html.i18n-pending #processCards,
-    html.i18n-pending #contactTitle,
-    html.i18n-pending #contactSub,
-    html.i18n-pending #contactBtn,
-    html.i18n-pending #footerIntro,
-    html.i18n-pending #footerExplore,
-    html.i18n-pending #footerLinks,
-    html.i18n-pending #footerEmailTitle,
-    html.i18n-pending #footerCopy { visibility: hidden; }
-  </style>
-  <noscript>
-    <style>
-      html.i18n-pending #desktopNav a,
-      html.i18n-pending #mobileNavLinks a,
-      html.i18n-pending #mobileMenuTitle,
-      html.i18n-pending #heroKicker,
-      html.i18n-pending #heroName,
-      html.i18n-pending #heroTitle,
-      html.i18n-pending #heroSub,
-      html.i18n-pending #heroCta1,
-      html.i18n-pending #heroCta2,
-      html.i18n-pending #intentTitle,
-      html.i18n-pending #intentSub,
-      html.i18n-pending #intentCards,
-      html.i18n-pending #servicesTitle,
-      html.i18n-pending #servicesCards,
-      html.i18n-pending #linksTitle,
-      html.i18n-pending #linksSub,
-      html.i18n-pending #processTitle,
-      html.i18n-pending #processSub,
-      html.i18n-pending #processCards,
-      html.i18n-pending #contactTitle,
-      html.i18n-pending #contactSub,
-      html.i18n-pending #contactBtn,
-      html.i18n-pending #footerIntro,
-      html.i18n-pending #footerExplore,
-      html.i18n-pending #footerLinks,
-      html.i18n-pending #footerEmailTitle,
-      html.i18n-pending #footerCopy { visibility: visible; }
-    </style>
-  </noscript>
 </head>
 <body>
   <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-xl">
@@ -78,10 +18,10 @@
       </a>
       <nav class="hidden items-center gap-1 rounded-full border border-slate-200 bg-white/85 p-1 md:flex" id="desktopNav">
         <a href="#hero" data-nav="hero" class="rounded-full bg-slate-900 px-3 py-1.5 text-sm font-medium text-white transition">首页</a>
-        <a href="#services" data-nav="services" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">个人服务</a>
-        <a href="#links" data-nav="links" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">案例展示</a>
-        <a href="#process" data-nav="process" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">合作流程</a>
-        <a href="#contact" data-nav="contact" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">联系咨询</a>
+        <a href="#services" data-nav="services" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">服务</a>
+        <a href="#links" data-nav="links" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">作品</a>
+        <a href="#process" data-nav="process" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">流程</a>
+        <a href="#contact" data-nav="contact" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">联系</a>
       </nav>
       <div class="flex items-center gap-3">
         <div class="hidden items-center rounded-full border border-slate-200 bg-white p-1 md:flex" id="langSwitch">
@@ -100,10 +40,10 @@
           <button id="menuCloseBtn" class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700">×</button>
         </div>
         <nav class="flex flex-col gap-2" id="mobileNavLinks">
-          <a href="#services" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">个人服务</a>
-          <a href="#links" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">案例展示</a>
-          <a href="#process" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">合作流程</a>
-          <a href="#contact" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">联系咨询</a>
+          <a href="#services" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">服务</a>
+          <a href="#links" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">作品</a>
+          <a href="#process" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">流程</a>
+          <a href="#contact" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">联系</a>
         </nav>
       </aside>
     </div>
@@ -118,10 +58,10 @@
           <div class="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8">
             <div class="hero-inner">
               <div class="hero-text">
-                <div class="hero-tag" id="heroKicker">CREATIVE BUILDER</div>
+                <div class="hero-tag" id="heroKicker">正在进行的 AI 协作实验</div>
                 <h1 class="hero-name" id="heroName">你好，我是Yara</h1>
                 <p class="hero-title" id="heroTitle">AI建站  视频创作  技能传授</p>
-                <p class="hero-bio" id="heroSub">我专注于用 AI 工具打造高效的数字产品。</p>
+                <p class="hero-bio" id="heroSub">我专注于用 AI 工具打造高效的数字产品，从零到一搭建网站、制作吸引眼球的视频内容，并将这套方法论倾囊相授。我相信每个人都能借助 AI 实现创作自由。</p>
                 <div class="hero-actions">
                   <a href="#services" class="btn-primary" id="heroCta1">查看详情</a>
                   <a href="#contact" class="btn-secondary" id="heroCta2">聊聊合作</a>
@@ -355,7 +295,6 @@
       document.getElementById("footerEmailTitle").textContent=d.footer[3];
       document.getElementById("footerCopy").textContent=d.footer[4];
       document.querySelectorAll("#langSwitch a").forEach((btn,idx)=>{const on=(idx===0&&lang==='zh')||(idx===1&&lang==='ja')||(idx===2&&lang==='en'); btn.classList.toggle('bg-slate-900',on); btn.classList.toggle('text-white',on); btn.classList.toggle('text-slate-600',!on);});
-      document.documentElement.classList.remove("i18n-pending");
     }
 
     document.querySelectorAll("#langSwitch a").forEach((btn,idx)=>btn.addEventListener("click",(e)=>{e.preventDefault(); render(idx===0?'zh':idx===1?'ja':'en');}));
