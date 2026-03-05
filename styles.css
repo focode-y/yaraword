@@ -474,6 +474,58 @@ main li {
     display: flex !important;
   }
 
+  #mobileNav {
+    display: block;
+  }
+
+  #mobileNav #mobileNavBackdrop {
+    opacity: 0;
+    transition: opacity 0.22s ease;
+  }
+
+  #mobileNav aside {
+    width: min(86vw, 360px);
+    transform: translateX(100%);
+    transition: transform 0.26s ease;
+    background: #ffffff;
+  }
+
+  #mobileNav:not(.hidden) #mobileNavBackdrop {
+    opacity: 1;
+  }
+
+  #mobileNav:not(.hidden) aside {
+    transform: translateX(0);
+  }
+
+  #mobileMenuTitle {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  #mobileNavLinks {
+    margin-top: 8px;
+    gap: 10px;
+  }
+
+  #mobileNavLinks a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #0f172a !important;
+    background: #ffffff;
+  }
+
+  #mobileNavLinks a:active {
+    background: #f8fafc;
+  }
+
   footer .max-w-6xl {
     padding-top: 32px !important;
     padding-bottom: 20px !important;

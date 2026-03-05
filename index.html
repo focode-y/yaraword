@@ -254,9 +254,9 @@
       localStorage.setItem("site_lang",lang);
       document.documentElement.lang=lang==="ja"?"ja":lang==="en"?"en":"zh-CN";
       document.title = lang==="ja" ? "Yara Code | デジタルマーケティングとブランド構築" : lang==="en" ? "Yara Code | Digital Marketing and Brand Building" : "Yara Code | 数字化营销与品牌建设";
-      document.querySelectorAll("#desktopNav a").forEach((n,i)=>n.textContent=d.nav[i]||"");
-      document.querySelectorAll("#mobileNavLinks a").forEach((n,i)=>n.textContent=d.nav[i+1]||"");
-      document.getElementById("mobileMenuTitle").textContent=(lang==="zh"?"菜单":(d.menu||"Menu"));
+      document.querySelectorAll("#desktopNav a").forEach((n,i)=>n.textContent=(d.nav&&d.nav[i])||n.textContent);
+      document.querySelectorAll("#mobileNavLinks a").forEach((n,i)=>n.textContent=(d.nav&&d.nav[i+1])||n.textContent);
+      document.getElementById("mobileMenuTitle").textContent=(lang==="zh"?"菜单":(d.menu||document.getElementById("mobileMenuTitle").textContent||"Menu"));
       document.getElementById("heroKicker").textContent=d.hero[0] || "";
       if ((d.hero || []).length >= 6) {
         document.getElementById("heroName").textContent=d.hero[1] || "";
@@ -323,7 +323,7 @@
     applyHeroVideoSource(); window.addEventListener("resize",applyHeroVideoSource); window.addEventListener("orientationchange",applyHeroVideoSource);
 
     const menuBtn = document.getElementById("menuBtn"), mobileNav = document.getElementById("mobileNav"), menuCloseBtn = document.getElementById("menuCloseBtn"), mobileNavBackdrop = document.getElementById("mobileNavBackdrop"), scrollBar=document.getElementById("scrollBar"), navItems=document.querySelectorAll("a[data-nav]");
-    function openMobileNav(){ mobileNav.classList.remove("hidden"); document.body.style.overflow="hidden"; } function closeMobileNav(){ mobileNav.classList.add("hidden"); document.body.style.overflow=""; }
+    function openMobileNav(){ mobileNav.classList.remove("hidden"); mobileNav.style.display="block"; document.body.style.overflow="hidden"; } function closeMobileNav(){ mobileNav.classList.add("hidden"); mobileNav.style.display=""; document.body.style.overflow=""; }
     menuBtn.addEventListener("click",openMobileNav); menuCloseBtn.addEventListener("click",closeMobileNav); mobileNavBackdrop.addEventListener("click",closeMobileNav);
     mobileNav.querySelectorAll("a").forEach((a)=>a.addEventListener("click",closeMobileNav));
     document.querySelectorAll('a[href^="#"]').forEach((a)=>a.addEventListener("click",(e)=>{ const id=a.getAttribute("href").slice(1),el=document.getElementById(id); if(!el)return; e.preventDefault(); window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-76,behavior:"smooth"}); }));
