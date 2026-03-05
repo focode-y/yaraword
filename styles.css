@@ -474,8 +474,12 @@ main li {
     display: flex !important;
   }
 
-  #mobileNav {
-    display: block;
+  #mobileNav.hidden {
+    display: none !important;
+  }
+
+  #mobileNav:not(.hidden) {
+    display: block !important;
   }
 
   #mobileNav #mobileNavBackdrop {
