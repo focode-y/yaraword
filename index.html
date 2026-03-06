@@ -26,10 +26,6 @@
       background: #ffffff;
     }
     #heroVideo {
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
-    #heroVideo.is-ready {
       opacity: 1;
     }
     #avatarVideo {
@@ -377,7 +373,6 @@
       });
     }
 
-    const heroSection = document.getElementById("hero");
     const heroVideo = document.getElementById("heroVideo");
     const avatarVideo = document.getElementById("avatarVideo");
     let avatarInitialized = false;
@@ -401,8 +396,6 @@
     }
     function markHeroReady() {
       if (!heroVideo) return;
-      heroVideo.classList.add("is-ready");
-      if (heroSection) heroSection.classList.add("hero-ready");
       initAvatarVideoAfterHeroReady();
     }
     function applyHeroVideoSource(){
@@ -423,7 +416,10 @@
         safePlayHeroVideo();
         markHeroReady();
       }, { once: true });
-      heroVideo.addEventListener("error", safePlayHeroVideo);
+      heroVideo.addEventListener("error", () => {
+        safePlayHeroVideo();
+        markHeroReady();
+      });
       heroVideo.addEventListener("canplay", markHeroReady, { once: true });
       heroVideo.addEventListener("loadeddata", markHeroReady, { once: true });
       // If the video was already loaded before listeners were attached, reveal immediately.
@@ -431,13 +427,9 @@
         markHeroReady();
       } else {
         setTimeout(() => {
-          if (!heroVideo.classList.contains("is-ready")) {
-            safePlayHeroVideo();
-            heroVideo.classList.add("is-ready");
-            if (heroSection) heroSection.classList.add("hero-ready");
-            if (heroVideo.readyState >= 1) initAvatarVideoAfterHeroReady();
-          }
-        }, 900);
+          safePlayHeroVideo();
+          if (heroVideo.readyState >= 1) initAvatarVideoAfterHeroReady();
+        }, 700);
       }
     }
     if (avatarVideo) {
