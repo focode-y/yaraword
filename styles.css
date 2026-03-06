@@ -350,6 +350,18 @@ main .service-tag {
   display: inline-flex !important;
 }
 
+#intent .cap-bubbles.intent-bubbles {
+  position: relative !important;
+  right: auto !important;
+  top: auto !important;
+  width: min(720px, 100%) !important;
+  margin: 1rem auto 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  justify-items: stretch;
+}
+
 .cap-bubble {
   position: relative;
   border-radius: 28px;
