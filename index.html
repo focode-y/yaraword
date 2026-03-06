@@ -212,9 +212,15 @@
     </div>
   </footer>
 
-  <script src="./content.js"></script>
+  <script>
+    window.__CONTENT_VERSION__ = "20260306-1";
+  </script>
+  <script src="./content.js?v=20260306-1"></script>
   <script>
     const i18n = window.SITE_CONTENT || {};
+    if (!Object.keys(i18n).length) {
+      console.error("[content] SITE_CONTENT not loaded, render aborted.");
+    }
     const linksCopy = {
       zh: { title: "案例展示", sub: "记录探索路上的每一个足迹", open: "打开链接" },
       ja: { title: "参考サイトとツール", sub: "制作したサイトやよく使うツールを表示します（site-links.txtで編集）。", open: "リンクを開く" },
@@ -367,8 +373,10 @@
     }
 
     document.querySelectorAll("#langSwitch a").forEach((btn,idx)=>btn.addEventListener("click",(e)=>{e.preventDefault(); render(idx===0?'zh':idx===1?'ja':'en');}));
-    render(localStorage.getItem("site_lang")||"zh");
-    ensureLinksLoaded();
+    if (Object.keys(i18n).length) {
+      render(localStorage.getItem("site_lang")||"zh");
+      ensureLinksLoaded();
+    }
 
     const servicesTitleEl = document.getElementById("servicesTitle");
     const bubbleSideTriggerEl = document.getElementById("bubbleSideTrigger");

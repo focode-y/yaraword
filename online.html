@@ -157,9 +157,15 @@
     </div>
   </footer>
 
-  <script src="./content.js"></script>
+  <script>
+    window.__CONTENT_VERSION__ = "20260306-1";
+  </script>
+  <script src="./content.js?v=20260306-1"></script>
   <script>
     const i18n = window.SITE_CONTENT || {};
+    if (!Object.keys(i18n).length) {
+      console.error("[content] SITE_CONTENT not loaded, render aborted.");
+    }
     const linksCopy = {
       zh: { title: "æ¡ä¾å±ç¤º", sub: "è®°å½æ¢ç´¢è·¯ä¸çæ¯ä¸ä¸ªè¶³è¿¹", open: "æå¼é¾æ¥" },
       ja: { title: "åèãµã¤ãã¨ãã¼ã«", sub: "å¶ä½ãããµã¤ããããä½¿ããã¼ã«ãè¡¨ç¤ºãã¾ãï¼site-links.txtã§ç·¨éï¼ã", open: "ãªã³ã¯ãéã" },
@@ -312,8 +318,10 @@
     }
 
     document.querySelectorAll("#langSwitch a").forEach((btn,idx)=>btn.addEventListener("click",(e)=>{e.preventDefault(); render(idx===0?'zh':idx===1?'ja':'en');}));
-    render(localStorage.getItem("site_lang")||"zh");
-    ensureLinksLoaded();
+    if (Object.keys(i18n).length) {
+      render(localStorage.getItem("site_lang")||"zh");
+      ensureLinksLoaded();
+    }
 
     const servicesTitleEl = document.getElementById("servicesTitle");
     const bubbleSideTriggerEl = document.getElementById("bubbleSideTrigger");
