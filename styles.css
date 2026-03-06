@@ -674,6 +674,22 @@ main li {
     display: none !important;
   }
 
+  #capabilityToggle .cap-bubbles.intent-bubbles {
+    display: grid !important;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 82vw);
+    grid-template-columns: none !important;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    justify-content: start;
+    padding-bottom: 6px;
+  }
+
+  #capabilityToggle .cap-bubbles.intent-bubbles::-webkit-scrollbar {
+    height: 6px;
+  }
+
   .bubble-side-trigger {
     display: none !important;
   }
