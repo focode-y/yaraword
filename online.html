@@ -1,0 +1,352 @@
+﻿ï»¿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yara Code | æ°å­åè¥éä¸åçå»ºè®¾</title>
+  <meta name="description" content="Yara Code éæé¦é¡µ" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-xl">
+    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <a href="#hero" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-900">Yara Code</a>
+      <nav class="hidden items-center gap-1 rounded-full border border-slate-200 bg-white/85 p-1 md:flex" id="desktopNav">
+        <a href="#hero" data-nav="hero" class="rounded-full bg-slate-900 px-3 py-1.5 text-sm font-medium text-white transition">é¦é¡µ</a>
+        <a href="#services" data-nav="services" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">ä¸ªäººæå¡</a>
+        <a href="#links" data-nav="links" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">æ¡ä¾å±ç¤º</a>
+        <a href="#process" data-nav="process" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">åä½æµç¨</a>
+        <a href="#contact" data-nav="contact" class="rounded-full px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100">èç³»å¨è¯¢</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <div class="hidden items-center rounded-full border border-slate-200 bg-white p-1 md:flex" id="langSwitch">
+          <a class="rounded-full bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white" href="#">ZH</a>
+          <a class="rounded-full px-2.5 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-100" href="#">JA</a>
+          <a class="rounded-full px-2.5 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-100" href="#">EN</a>
+        </div>
+        <button id="menuBtn" class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-800 md:hidden" aria-label="Menu">é®</button>
+      </div>
+    </div>
+    <div id="mobileNav" class="fixed inset-0 z-[60] hidden md:hidden">
+      <div id="mobileNavBackdrop" class="absolute inset-0 bg-slate-950/45 backdrop-blur-[1px]"></div>
+      <aside class="absolute right-0 top-0 h-full w-[84%] max-w-[340px] border-l border-slate-200 bg-white p-5 shadow-2xl">
+        <div class="mb-5 flex items-center justify-between">
+          <p class="text-sm font-semibold text-slate-900" id="mobileMenuTitle">é¿æ»å´</p>
+          <button id="menuCloseBtn" class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700">è³</button>
+        </div>
+        <nav class="flex flex-col gap-2" id="mobileNavLinks">
+          <a href="#services" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">ä¸ªäººæå¡</a>
+          <a href="#links" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">æ¡ä¾å±ç¤º</a>
+          <a href="#process" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">åä½æµç¨</a>
+          <a href="#contact" class="rounded-xl px-3 py-2.5 text-base font-medium text-slate-700 hover:bg-slate-100">èç³»å¨è¯¢</a>
+        </nav>
+      </aside>
+    </div>
+    <div class="h-[2px] w-full bg-transparent"><div id="scrollBar" class="h-full bg-amber-400 transition-[width] duration-150" style="width:0%"></div></div>
+  </header>
+
+  <main class="flex-1">
+    <div class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/35 to-white">
+      <section id="hero" class="relative left-1/2 h-[56vh] w-screen -translate-x-1/2 overflow-hidden border-y border-slate-200 sm:h-[64vh] lg:h-[72vh]">
+        <video id="heroVideo" class="absolute inset-0 h-full w-full object-cover brightness-110 saturate-90" autoplay loop muted playsinline preload="none" src="./assets/videos/hero.mp4" data-src-mobile="./assets/videos/hero-mobile.mp4" data-src-desktop="./assets/videos/hero.mp4"></video>
+        <div class="absolute inset-0 flex items-center">
+          <div class="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8">
+            <div class="hero-inner">
+              <div class="hero-text">
+                <div class="hero-tag" id="heroKicker">CREATIVE BUILDER</div>
+                <h1 class="hero-name" id="heroName">ä½ å¥½ï¼ææ¯Yara</h1>
+                <p class="hero-title" id="heroTitle">AIå»ºç«  è§é¢åä½  æè½ä¼ æ</p>
+                <p class="hero-bio" id="heroSub">æä¸æ³¨äºç¨ AI å·¥å·æé é«æçæ°å­äº§åã</p>
+                <div class="hero-actions">
+                  <a href="#services" class="btn-primary" id="heroCta1">æ¥çè¯¦æ</a>
+                  <a href="#contact" class="btn-secondary" id="heroCta2">èèåä½</a>
+                </div>
+              </div>
+              <div class="hero-avatar-wrap">
+                <div class="avatar-frame">
+                  <div class="avatar-ring"></div>
+                  <div class="avatar-ring-2"></div>
+                  <video class="avatar-img" src="./assets/videos/yara1.mp4" muted playsinline loop autoplay preload="metadata" aria-label="å¤´åè§é¢"></video>
+                  <div class="avatar-corner tl"></div>
+                  <div class="avatar-corner tr"></div>
+                  <div class="avatar-corner bl"></div>
+                  <div class="avatar-corner br"></div>
+                </div>
+                <div class="stat-badge left">
+                  <span class="num">50+</span>
+                  <span id="heroStatLabel1">å®æé¡¹ç®</span>
+                </div>
+                <div class="stat-badge bottom">
+                  <span class="num">100%</span>
+                  <span id="heroStatLabel2">å®¢æ·æ»¡æ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="mx-auto max-w-[1180px] px-4 py-14 sm:px-6 lg:py-20">
+        <section id="services" class="scroll-mt-24 mt-16 rounded-3xl border border-orange-100/80 bg-orange-50/40 p-6 sm:p-12">
+          <div class="text-center">
+            <h2 class="mt-2 text-[2.1rem] font-semibold tracking-[0.02em] text-[#173958] sm:text-[2.75rem] bubble-trigger" id="servicesTitle" role="button" tabindex="0" aria-expanded="false"></h2>
+            <span class="mx-auto mt-3 block h-[2px] w-14 rounded-full bg-orange-400"></span>
+            <button type="button" class="bubble-side-trigger" id="bubbleSideTrigger">ç¹æçç</button>
+            <div class="cap-bubbles mt-8" id="capabilityBubbles"></div>
+          </div>
+          <div class="mt-8 grid gap-5 md:grid-cols-3" id="servicesCards"></div>
+        </section>
+
+        <section id="links" class="mt-16 rounded-3xl border border-slate-200/90 bg-gradient-to-b from-white via-slate-50/60 to-white p-7 sm:p-11">
+          <div class="text-center">
+            <h2 class="mt-2 text-[2rem] font-semibold tracking-[0.02em] text-[#173958] sm:text-[2.45rem]" id="linksTitle">æ¡ä¾å±ç¤º</h2>
+            <span class="mx-auto mt-3 block h-[2px] w-14 rounded-full bg-orange-400"></span>
+            <p class="mx-auto mt-4 max-w-3xl text-[1.02rem] leading-relaxed text-slate-600" id="linksSub">è®°å½æ¢ç´¢è·¯ä¸çæ¯ä¸ä¸ªè¶³è¿¹</p>
+          </div>
+          <div class="mt-9 grid gap-5 sm:grid-cols-2 lg:grid-cols-4" id="linksCards"></div>
+        </section>
+
+        <section id="process" class="mt-16 rounded-3xl border border-orange-100/80 bg-orange-50/50 p-6 sm:p-11">
+          <div class="text-center">
+            <h2 class="mt-2 text-[2rem] font-semibold tracking-[0.02em] text-[#173958] sm:text-[2.45rem]" id="processTitle"></h2>
+            <span class="mx-auto mt-3 block h-[2px] w-14 rounded-full bg-orange-400"></span>
+            <p class="mx-auto mt-4 max-w-3xl text-[1.02rem] leading-relaxed text-slate-600" id="processSub"></p>
+          </div>
+          <div class="mt-8 grid gap-5 md:grid-cols-2" id="processCards"></div>
+        </section>
+
+        <section id="intent" class="mt-16 rounded-3xl border border-slate-100/80 bg-white p-7 sm:p-12">
+          <div class="text-center">
+            <h2 class="mt-2 text-[2.1rem] font-semibold tracking-[0.02em] text-[#173958] sm:text-[2.75rem]" id="intentTitle"></h2>
+            <span class="mx-auto mt-3 block h-[2px] w-14 rounded-full bg-orange-400"></span>
+            <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base" id="intentSub"></p>
+          </div>
+          <div class="mt-8 grid gap-4 md:grid-cols-2" id="intentCards"></div>
+        </section>
+
+        <section id="contact" class="mt-16 rounded-3xl border border-slate-200/90 bg-gradient-to-b from-white to-slate-50/50 p-7 shadow-[0_24px_70px_-50px_rgba(15,23,42,0.35)] sm:p-9">
+          <h2 class="text-3xl font-semibold tracking-tight text-slate-900" id="contactTitle"></h2>
+          <p class="mt-3 max-w-3xl text-slate-700" id="contactSub"></p>
+          <div class="mt-6"><a href="mailto:yara.fcod@gmail.com?subject=%E9%A1%B9%E7%9B%AE%E5%92%A8%E8%AF%A2" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white transition hover:bg-slate-700" id="contactBtn"></a></div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-slate-950 text-slate-200">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div class="grid gap-8 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+        <div>
+          <p class="inline-flex items-center gap-2 rounded-full border border-slate-700 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-300">Yara Code</p>
+          <p class="mt-4 max-w-xl text-sm leading-relaxed text-slate-300" id="footerIntro"></p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-white" id="footerExplore"></p>
+          <div class="mt-3 flex flex-col gap-2" id="footerLinks"></div>
+        </div>
+        <div>
+          <div class="flex items-center gap-3 text-sm">
+            <p class="font-semibold text-white" id="footerEmailTitle"></p>
+            <a href="mailto:yara.fcod@gmail.com" class="font-medium text-slate-200 transition hover:text-white">yara.fcod@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <p class="mt-10 border-t border-slate-800 pt-5 text-xs text-slate-500" id="footerCopy"></p>
+    </div>
+  </footer>
+
+  <script src="./content.js"></script>
+  <script>
+    const i18n = window.SITE_CONTENT || {};
+    const linksCopy = {
+      zh: { title: "æ¡ä¾å±ç¤º", sub: "è®°å½æ¢ç´¢è·¯ä¸çæ¯ä¸ä¸ªè¶³è¿¹", open: "æå¼é¾æ¥" },
+      ja: { title: "åèãµã¤ãã¨ãã¼ã«", sub: "å¶ä½ãããµã¤ããããä½¿ããã¼ã«ãè¡¨ç¤ºãã¾ãï¼site-links.txtã§ç·¨éï¼ã", open: "ãªã³ã¯ãéã" },
+      en: { title: "Featured Sites & Tools", sub: "Showcase your previous websites or tools (editable via site-links.txt).", open: "Open Link" }
+    };
+    const defaultLinks = [
+      { url: "https://example.com/pension-tool", zh: { title: "å»èéè®¡ç®å¨", desc: "éä¼éæµç®é¡µé¢ç¤ºä¾" }, ja: { title: "å¹´éè¨ç®ãã¼ã«", desc: "å¹´éè©¦ç®ãã¼ã¸ã®ä¾" }, en: { title: "Pension Calculator", desc: "Sample retirement calculation page" } },
+      { url: "https://example.com/rental-guide", zh: { title: "ç§æ¿ç³è¯·æå", desc: "æ¿ç­ä¿¡æ¯ä¸åçè·¯å¾è¯´æ" }, ja: { title: "è³è²¸ç³è«ã¬ã¤ã", desc: "å¶åº¦æå ±ã¨ç³è«æé ã®èª¬æ" }, en: { title: "Rental Application Guide", desc: "Policy info and application steps" } },
+      { url: "https://example.com/content-tool", zh: { title: "åå®¹åå¸å·¥å·", desc: "èªå¨ååå¸ä¸ç´ æç®¡ç" }, ja: { title: "ã³ã³ãã³ãéä¿¡ãã¼ã«", desc: "èªåéä¿¡ã¨ç´ æç®¡ç" }, en: { title: "Content Publishing Tool", desc: "Automated publishing and asset management" } },
+      { url: "https://example.com/booking", zh: { title: "å®¢æ·é¢çº¦é¡µ", desc: "å¨è¯¢é¢çº¦ä¸çº¿ç´¢æ¶éé¡µé¢" }, ja: { title: "äºç´ãã¼ã¸", desc: "ç¸è«äºç´ã¨ãªã¼ãåéãã¼ã¸" }, en: { title: "Client Booking Page", desc: "Inquiry booking and lead capture" } },
+      { url: "https://example.com/dashboard", zh: { title: "æ°æ®çæ¿", desc: "è®¿é®ãè½¬åä¸æ¸ éææç»è®¡" }, ja: { title: "ãã¼ã¿ããã·ã¥ãã¼ã", desc: "æµå¥ã»CVã»ãã£ãã«å¹æã®å¯è¦å" }, en: { title: "Data Dashboard", desc: "Traffic, conversion, and channel performance" } },
+      { url: "https://example.com/portfolio", zh: { title: "ä½åæ»è§", desc: "å·²ä¸çº¿ç½ç«ä¸é¡¹ç®åé" }, ja: { title: "å®ç¸¾ä¸è¦§", desc: "å¬éæ¸ã¿ãµã¤ãã¨ãã­ã¸ã§ã¯ãä¸è¦§" }, en: { title: "Portfolio Overview", desc: "Collection of launched sites and projects" } },
+      { url: "https://example.com/map-optimization", zh: { title: "é¨åºå°å¾ä¼åé¡µ", desc: "å°å¾èµæå®åä¸æ¬å°æç´¢ä¼åæ¡ä¾" }, ja: { title: "åºèãããæé©å", desc: "å°å³æå ±æ´åã¨ã­ã¼ã«ã«SEOäºä¾" }, en: { title: "Map Optimization Page", desc: "Profile optimization and local search case" } },
+      { url: "https://example.com/ai-workflow", zh: { title: "AI å·¥ä½æµæ¼ç¤ºç«", desc: "ä»éæ±å°äº¤ä»çèªå¨åæµç¨æ¼ç¤º" }, ja: { title: "AIã¯ã¼ã¯ãã­ã¼ãã¢", desc: "è¦ä»¶å®ç¾©ããç´åã¾ã§ã®èªååä¾" }, en: { title: "AI Workflow Demo", desc: "Automation flow from request to delivery" } }
+    ];
+    let customLinks = [];
+    let linksLoadStarted = false;
+
+    function parseLinksText(text){
+      return text
+        .replace(/^\uFEFF/, "")
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line) => line && !line.startsWith("#"))
+        .map((line) => line.split(/\s*[|｜]\s*/).map((x) => x.trim()))
+        .filter((arr) => arr.length >= 2)
+        .map((arr) => {
+          const zhTitle = arr[0] || "";
+          const url = arr[1] || "";
+          const zhDesc = arr[2] || "";
+          const jaTitle = arr[3] || zhTitle;
+          const jaDesc = arr[4] || zhDesc;
+          const enTitle = arr[5] || zhTitle;
+          const enDesc = arr[6] || zhDesc;
+          return {
+            url,
+            zh: { title: zhTitle, desc: zhDesc },
+            ja: { title: jaTitle, desc: jaDesc },
+            en: { title: enTitle, desc: enDesc }
+          };
+        });
+    }
+
+    function renderLinksSection(lang){
+      const copy = linksCopy[lang] || linksCopy.zh;
+      const list = customLinks.length ? customLinks : defaultLinks;
+      const iconClasses = [
+        "bg-rose-100 text-rose-600",
+        "bg-amber-100 text-amber-600",
+        "bg-emerald-100 text-emerald-600",
+        "bg-sky-100 text-sky-600",
+        "bg-fuchsia-100 text-fuchsia-600",
+        "bg-indigo-100 text-indigo-600",
+        "bg-teal-100 text-teal-600",
+        "bg-orange-100 text-orange-600"
+      ];
+      document.getElementById("linksTitle").textContent = copy.title;
+      document.getElementById("linksSub").textContent = copy.sub;
+      document.getElementById("linksCards").innerHTML = list.map((x, i) => `
+        <a href="${x.url}" target="_blank" rel="noopener noreferrer" class="group block rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_14px_30px_-24px_rgba(15,23,42,0.28)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_22px_38px_-24px_rgba(15,23,42,0.36)]">
+          <div class="flex items-start gap-3">
+            <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold ${iconClasses[i % iconClasses.length]}">â</span>
+            <div class="min-w-0">
+              <h3 class="text-[16px] font-semibold leading-6 text-slate-900">${(x[lang] || x.zh || {}).title || ""}</h3>
+              <p class="mt-2 min-h-[52px] text-[13px] leading-6 text-slate-600">${(x[lang] || x.zh || {}).desc || ""}</p>
+            </div>
+          </div>
+        </a>
+      `).join("");
+    }
+
+    async function ensureLinksLoaded(){
+      if (linksLoadStarted) return;
+      linksLoadStarted = true;
+      const ts = Date.now();
+      const candidates = [`./site-links.txt?v=${ts}`, `/site-links.txt?v=${ts}`];
+
+      for (const url of candidates) {
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res.ok) throw new Error(`http_${res.status}`);
+          const txt = await res.text();
+          const parsed = parseLinksText(txt);
+          if (parsed.length) {
+            customLinks = parsed;
+            console.info("[site-links] loaded", url, "count=", parsed.length);
+            break;
+          }
+          console.warn("[site-links] empty parsed list from", url);
+        } catch (e) {
+          console.warn("[site-links] load failed:", url, e);
+        }
+      }
+
+      if (!customLinks.length) console.warn("[site-links] fallback to defaultLinks");
+      const lang = localStorage.getItem("site_lang") || "zh";
+      renderLinksSection(lang);
+    }
+
+    function render(lang){
+      const d=i18n[lang]||i18n.zh;
+      localStorage.setItem("site_lang",lang);
+      document.documentElement.lang=lang==="ja"?"ja":lang==="en"?"en":"zh-CN";
+      document.title = lang==="ja" ? "Yara Code | ãã¸ã¿ã«ãã¼ã±ãã£ã³ã°ã¨ãã©ã³ãæ§ç¯" : lang==="en" ? "Yara Code | Digital Marketing and Brand Building" : "Yara Code | æ°å­åè¥éä¸åçå»ºè®¾";
+      document.querySelectorAll("#desktopNav a").forEach((n,i)=>n.textContent=d.nav[i]||"");
+      document.querySelectorAll("#mobileNavLinks a").forEach((n,i)=>n.textContent=d.nav[i+1]||"");
+      document.getElementById("mobileMenuTitle").textContent=d.menu;
+      document.getElementById("heroKicker").textContent=d.hero[0] || "";
+      if ((d.hero || []).length >= 6) {
+        document.getElementById("heroName").textContent=d.hero[1] || "";
+        document.getElementById("heroTitle").textContent=d.hero[2] || "";
+        document.getElementById("heroSub").textContent=d.hero[3] || "";
+        document.getElementById("heroCta1").textContent=d.hero[4] || "";
+        document.getElementById("heroCta2").textContent=d.hero[5] || "";
+      } else {
+        document.getElementById("heroTitle").textContent=d.hero[1] || "";
+        document.getElementById("heroSub").textContent=d.hero[2] || "";
+        document.getElementById("heroCta1").textContent=d.hero[3] || "";
+        document.getElementById("heroCta2").textContent=d.hero[4] || "";
+      }
+      if (d.heroStats && d.heroStats.length >= 2) {
+        document.getElementById("heroStatLabel1").textContent = d.heroStats[0];
+        document.getElementById("heroStatLabel2").textContent = d.heroStats[1];
+      }
+      document.getElementById("intentTitle").textContent=d.intentTitle;
+      document.getElementById("intentSub").textContent=d.intentSub;
+      document.getElementById("intentCards").innerHTML=d.intent.map(x=>`<article class="rounded-3xl border border-slate-200 bg-slate-50/45 p-7"><h3 class="text-lg font-semibold text-slate-900">${x[0]}</h3><p class="mt-3 whitespace-pre-line text-[16px] leading-6 text-slate-700 sm:leading-8">${x[1]}</p></article>`).join("");
+      document.getElementById("servicesTitle").textContent=d.servicesTitle;
+      const capLead = d.capLead || [];
+      const capBody = d.capBody || [];
+      document.getElementById("capabilityBubbles").innerHTML=capLead.slice(0,3).map((x,i)=>`<article class="cap-bubble cap-bubble-${i+1}" style="--bubble-delay:${i * 0.9}s"><p class="cap-bubble-title" style="font-size:9px;line-height:1.4;">${x}</p><p class="cap-bubble-body" style="font-size:9px;line-height:1.45;">${capBody[i] || ""}</p></article>`).join("");
+      document.getElementById("capabilityBubbles").classList.remove("cap-bubbles-active");
+      document.getElementById("servicesTitle").setAttribute("aria-expanded","false");
+      const serviceImages = (d.cases || []).slice(0,3).map((c) => c[3]).concat(["./assets/images/li1.png","./assets/images/li2.png","./assets/images/li3.png"]);
+      document.getElementById("servicesCards").innerHTML=d.services.map((x,i)=>`<article class="group service-card rounded-3xl border border-slate-200 bg-white -translate-y-0.5 p-8 shadow-[0_14px_30px_-22px_rgba(15,23,42,0.45)] transition duration-300 hover:border-orange-200"><div class="relative mb-6 aspect-[16/10] overflow-hidden rounded-2xl"><img src="${serviceImages[i] || "./assets/images/li1.png"}" alt="${x[0]}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" /></div><h3 class="service-card-title text-xl font-semibold leading-tight text-slate-900">${x[0]}</h3><p class="service-card-desc mt-6 text-[16px] leading-8 text-slate-700">${x[1]}</p><div class="service-tags mt-5">${x[2].slice(0,3).map(li=>`<span class="service-tag">${li}</span>`).join("")}</div></article>`).join("");
+      renderLinksSection(lang);
+      document.getElementById("processTitle").textContent=d.processTitle;
+      document.getElementById("processSub").textContent=d.processSub;
+      document.getElementById("processCards").innerHTML=d.process.map((x,i)=>`<article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-[0_14px_30px_-22px_rgba(15,23,42,0.35)]"><p class="text-xs font-semibold tracking-[0.14em] text-orange-500">STEP ${String(i+1).padStart(2,"0")}</p><h3 class="mt-2 text-lg font-semibold text-slate-900">${x[0]}</h3><p class="mt-2 text-[16px] leading-6 text-slate-700">${x[1]}</p></article>`).join("");
+      document.getElementById("contactTitle").textContent=d.contact[0];
+      document.getElementById("contactSub").textContent=d.contact[1];
+      document.getElementById("contactBtn").textContent=d.contact[2];
+      document.getElementById("contactBtn").setAttribute("href",`mailto:yara.fcod@gmail.com?subject=${encodeURIComponent(d.contact[3])}`);
+      document.getElementById("footerIntro").textContent=d.footer[0];
+      document.getElementById("footerExplore").textContent=d.footer[1];
+      document.getElementById("footerLinks").innerHTML=d.footer[2].map((x,i)=>`<a href="${i===0?'#services':i===1?'#links':'#contact'}" class="inline-flex items-center gap-1 text-sm text-slate-300 transition hover:text-white">${x}</a>`).join("");
+      document.getElementById("footerEmailTitle").textContent=d.footer[3];
+      document.getElementById("footerCopy").textContent=d.footer[4];
+      document.querySelectorAll("#langSwitch a").forEach((btn,idx)=>{const on=(idx===0&&lang==='zh')||(idx===1&&lang==='ja')||(idx===2&&lang==='en'); btn.classList.toggle('bg-slate-900',on); btn.classList.toggle('text-white',on); btn.classList.toggle('text-slate-600',!on);});
+    }
+
+    document.querySelectorAll("#langSwitch a").forEach((btn,idx)=>btn.addEventListener("click",(e)=>{e.preventDefault(); render(idx===0?'zh':idx===1?'ja':'en');}));
+    render(localStorage.getItem("site_lang")||"zh");
+    ensureLinksLoaded();
+
+    const servicesTitleEl = document.getElementById("servicesTitle");
+    const bubbleSideTriggerEl = document.getElementById("bubbleSideTrigger");
+    const capBubblesEl = document.getElementById("capabilityBubbles");
+    function toggleCapBubbles(){
+      const active = capBubblesEl.classList.toggle("cap-bubbles-active");
+      servicesTitleEl.setAttribute("aria-expanded", active ? "true" : "false");
+      bubbleSideTriggerEl.setAttribute("aria-expanded", active ? "true" : "false");
+    }
+    servicesTitleEl.addEventListener("click", toggleCapBubbles);
+    bubbleSideTriggerEl.addEventListener("click", toggleCapBubbles);
+    servicesTitleEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleCapBubbles();
+      }
+    });
+
+    const heroVideo = document.getElementById("heroVideo");
+    function applyHeroVideoSource(){ const m=window.matchMedia("(max-width: 768px)").matches; const s=m?heroVideo.dataset.srcMobile:heroVideo.dataset.srcDesktop; if(heroVideo.getAttribute("src")!==s){ heroVideo.setAttribute("src",s); heroVideo.load(); heroVideo.play().catch(()=>{});} }
+    applyHeroVideoSource(); window.addEventListener("resize",applyHeroVideoSource); window.addEventListener("orientationchange",applyHeroVideoSource);
+
+    const menuBtn = document.getElementById("menuBtn"), mobileNav = document.getElementById("mobileNav"), menuCloseBtn = document.getElementById("menuCloseBtn"), mobileNavBackdrop = document.getElementById("mobileNavBackdrop"), scrollBar=document.getElementById("scrollBar"), navItems=document.querySelectorAll("a[data-nav]");
+    function openMobileNav(){ mobileNav.classList.remove("hidden"); document.body.style.overflow="hidden"; } function closeMobileNav(){ mobileNav.classList.add("hidden"); document.body.style.overflow=""; }
+    menuBtn.addEventListener("click",openMobileNav); menuCloseBtn.addEventListener("click",closeMobileNav); mobileNavBackdrop.addEventListener("click",closeMobileNav);
+    mobileNav.querySelectorAll("a").forEach((a)=>a.addEventListener("click",closeMobileNav));
+    document.querySelectorAll('a[href^="#"]').forEach((a)=>a.addEventListener("click",(e)=>{ const id=a.getAttribute("href").slice(1),el=document.getElementById(id); if(!el)return; e.preventDefault(); window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-76,behavior:"smooth"}); }));
+    function updateNav(){ const doc=document.documentElement; const top=window.scrollY||doc.scrollTop; const total=doc.scrollHeight-window.innerHeight; scrollBar.style.width=(total>0?(top/total)*100:0)+"%"; let current="hero"; ["hero","services","links","process","contact"].forEach((id)=>{const s=document.getElementById(id); if(s&&window.scrollY+120>=s.offsetTop) current=id;}); navItems.forEach((a)=>{const on=a.dataset.nav===current; a.classList.toggle("bg-slate-900",on); a.classList.toggle("text-white",on); a.classList.toggle("text-slate-600",!on);});}
+    updateNav(); window.addEventListener("scroll",updateNav,{passive:true}); window.addEventListener("resize",updateNav);
+  </script>
+</body>
+</html>
+
+
+
+

@@ -79,11 +79,11 @@
                 </div>
                 <div class="stat-badge left">
                   <span class="num">50+</span>
-                  <span>完成项目</span>
+                  <span id="heroStatLabel1">完成项目</span>
                 </div>
                 <div class="stat-badge bottom">
                   <span class="num">100%</span>
-                  <span>客户满意</span>
+                  <span id="heroStatLabel2">客户满意</span>
                 </div>
               </div>
             </div>
@@ -92,15 +92,6 @@
       </section>
 
       <div class="mx-auto max-w-[1180px] px-4 py-14 sm:px-6 lg:py-20">
-        <section id="intent" class="rounded-3xl border border-slate-100/80 bg-white p-7 sm:p-12">
-          <div class="text-center">
-            <h2 class="mt-2 text-[2.1rem] font-semibold tracking-[0.02em] text-[#173958] sm:text-[2.75rem]" id="intentTitle"></h2>
-            <span class="mx-auto mt-3 block h-[2px] w-14 rounded-full bg-orange-400"></span>
-            <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base" id="intentSub"></p>
-          </div>
-          <div class="mt-8 grid gap-4 md:grid-cols-2" id="intentCards"></div>
-        </section>
-
         <section id="services" class="scroll-mt-24 mt-16 rounded-3xl border border-orange-100/80 bg-orange-50/40 p-6 sm:p-12">
           <div class="text-center">
             <h2 class="mt-2 text-[2.1rem] font-semibold tracking-[0.02em] text-[#173958] sm:text-[2.75rem] bubble-trigger" id="servicesTitle" role="button" tabindex="0" aria-expanded="false"></h2>
@@ -127,6 +118,15 @@
             <p class="mx-auto mt-4 max-w-3xl text-[1.02rem] leading-relaxed text-slate-600" id="processSub"></p>
           </div>
           <div class="mt-8 grid gap-5 md:grid-cols-2" id="processCards"></div>
+        </section>
+
+        <section id="intent" class="mt-16 rounded-3xl border border-slate-100/80 bg-white p-7 sm:p-12">
+          <div class="text-center">
+            <h2 class="mt-2 text-[2.1rem] font-semibold tracking-[0.02em] text-[#173958] sm:text-[2.75rem]" id="intentTitle"></h2>
+            <span class="mx-auto mt-3 block h-[2px] w-14 rounded-full bg-orange-400"></span>
+            <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base" id="intentSub"></p>
+          </div>
+          <div class="mt-8 grid gap-4 md:grid-cols-2" id="intentCards"></div>
         </section>
 
         <section id="contact" class="mt-16 rounded-3xl border border-slate-200/90 bg-gradient-to-b from-white to-slate-50/50 p-7 shadow-[0_24px_70px_-50px_rgba(15,23,42,0.35)] sm:p-9">
@@ -183,10 +183,11 @@
 
     function parseLinksText(text){
       return text
+        .replace(/^\uFEFF/, "")
         .split(/\r?\n/)
         .map((line) => line.trim())
         .filter((line) => line && !line.startsWith("#"))
-        .map((line) => line.split("|").map((x) => x.trim()))
+        .map((line) => line.split(/\s*[|｜]\s*/).map((x) => x.trim()))
         .filter((arr) => arr.length >= 2)
         .map((arr) => {
           const zhTitle = arr[0] || "";
@@ -233,20 +234,32 @@
       `).join("");
     }
 
-    function ensureLinksLoaded(){
+    async function ensureLinksLoaded(){
       if (linksLoadStarted) return;
       linksLoadStarted = true;
-      fetch("./site-links.txt", { cache: "no-store" })
-        .then((res) => (res.ok ? res.text() : Promise.reject(new Error("load failed"))))
-        .then((txt) => {
+      const ts = Date.now();
+      const candidates = [`./site-links.txt?v=${ts}`, `/site-links.txt?v=${ts}`];
+
+      for (const url of candidates) {
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res.ok) throw new Error(`http_${res.status}`);
+          const txt = await res.text();
           const parsed = parseLinksText(txt);
-          if (parsed.length) customLinks = parsed;
-        })
-        .catch(() => {})
-        .finally(() => {
-          const lang = localStorage.getItem("site_lang") || "zh";
-          renderLinksSection(lang);
-        });
+          if (parsed.length) {
+            customLinks = parsed;
+            console.info("[site-links] loaded", url, "count=", parsed.length);
+            break;
+          }
+          console.warn("[site-links] empty parsed list from", url);
+        } catch (e) {
+          console.warn("[site-links] load failed:", url, e);
+        }
+      }
+
+      if (!customLinks.length) console.warn("[site-links] fallback to defaultLinks");
+      const lang = localStorage.getItem("site_lang") || "zh";
+      renderLinksSection(lang);
     }
 
     function render(lang){
@@ -269,6 +282,10 @@
         document.getElementById("heroSub").textContent=d.hero[2] || "";
         document.getElementById("heroCta1").textContent=d.hero[3] || "";
         document.getElementById("heroCta2").textContent=d.hero[4] || "";
+      }
+      if (d.heroStats && d.heroStats.length >= 2) {
+        document.getElementById("heroStatLabel1").textContent = d.heroStats[0];
+        document.getElementById("heroStatLabel2").textContent = d.heroStats[1];
       }
       document.getElementById("intentTitle").textContent=d.intentTitle;
       document.getElementById("intentSub").textContent=d.intentSub;
@@ -332,6 +349,7 @@
   </script>
 </body>
 </html>
+
 
 
 

@@ -10,6 +10,7 @@
       "查看详情",
       "聊聊合作"
     ],
+    heroStats: ["完成项目", "客户满意"],
     intentTitle: "你想做什么？",
     intentSub: "先说你现在最卡的一步，我们就从那里开始。",
     intent: [
@@ -65,6 +66,7 @@
       "詳細を見る",
       "相談してみる"
     ],
+    heroStats: ["完了プロジェクト", "顧客満足"],
     intentTitle: "あなたは何をしたいですか？",
     intentSub: "いま一番つまずいている一歩を教えてください。そこから始めましょう。",
     intent: [
@@ -120,6 +122,7 @@
       "View Details",
       "Let's Talk"
     ],
+    heroStats: ["Projects Delivered", "Client Satisfaction"],
     intentTitle: "What do you want to build?",
     intentSub: "Tell me your biggest current bottleneck, and we’ll start exactly there.",
     intent: [
