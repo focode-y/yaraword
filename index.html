@@ -25,8 +25,8 @@
       </nav>
       <div class="flex items-center gap-3">
         <div class="hidden items-center rounded-full border border-slate-200 bg-white p-1 md:flex" id="langSwitch">
-          <a class="rounded-full bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white" href="#">ZH</a>
-          <a class="rounded-full px-2.5 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-100" href="#">JA</a>
+          <a class="rounded-full bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white" href="#">中文</a>
+          <a class="rounded-full px-2.5 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-100" href="#">日本語</a>
           <a class="rounded-full px-2.5 py-1 text-xs font-semibold text-slate-600 hover:bg-slate-100" href="#">EN</a>
         </div>
         <button id="menuBtn" class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-800 md:hidden" aria-label="Menu">☰</button>
@@ -123,10 +123,14 @@
             <h2 class="mt-2 text-[2.1rem] font-semibold tracking-[0.02em] text-[#173958] sm:text-[2.75rem]" id="intentTitle"></h2>
             <span class="mx-auto mt-3 block h-[2px] w-14 rounded-full bg-orange-400"></span>
             <p class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base" id="intentSub"></p>
-            <button type="button" class="bubble-side-trigger intent-trigger mt-5" id="bubbleSideTrigger">点我看看</button>
-            <div class="cap-bubbles intent-bubbles mt-8" id="capabilityBubbles"></div>
           </div>
           <div class="mt-8 grid gap-4 md:grid-cols-2" id="intentCards"></div>
+        </section>
+
+        <section id="capabilityToggle" class="mt-12 rounded-3xl border border-orange-200/80 bg-orange-50/50 p-6 sm:p-8">
+          <div class="text-center">
+            <div class="cap-bubbles intent-bubbles mt-2 cap-bubbles-active" id="capabilityBubbles"></div>
+          </div>
         </section>
 
         <section id="contact" class="mt-16 rounded-3xl border border-slate-200/90 bg-gradient-to-b from-white to-slate-50/50 p-7 shadow-[0_24px_70px_-50px_rgba(15,23,42,0.35)] sm:p-9">
@@ -293,8 +297,8 @@
       document.getElementById("servicesTitle").textContent=d.servicesTitle;
       const capLead = d.capLead || [];
       const capBody = d.capBody || [];
-      document.getElementById("capabilityBubbles").innerHTML=capLead.slice(0,3).map((x,i)=>`<article class="cap-bubble cap-bubble-${i+1}" style="--bubble-delay:${i * 0.9}s"><p class="cap-bubble-title" style="font-size:9px;line-height:1.4;">${x}</p><p class="cap-bubble-body" style="font-size:9px;line-height:1.45;">${capBody[i] || ""}</p></article>`).join("");
-      document.getElementById("capabilityBubbles").classList.remove("cap-bubbles-active");
+      document.getElementById("capabilityBubbles").innerHTML=capLead.slice(0,3).map((x,i)=>`<article class="cap-bubble cap-bubble-${i+1}" style="--bubble-delay:${i * 0.9}s"><p class="cap-bubble-title">${x}</p><p class="cap-bubble-body">${capBody[i] || ""}</p></article>`).join("");
+      document.getElementById("capabilityBubbles").classList.add("cap-bubbles-active");
       document.getElementById("servicesTitle").setAttribute("aria-expanded","false");
       const serviceImages = (d.cases || []).slice(0,3).map((c) => c[3]).concat(["./assets/images/li1.png","./assets/images/li2.png","./assets/images/li3.png"]);
       document.getElementById("servicesCards").innerHTML=d.services.map((x,i)=>`<article class="group service-card rounded-3xl border border-slate-200 bg-white -translate-y-0.5 p-8 shadow-[0_14px_30px_-22px_rgba(15,23,42,0.45)] transition duration-300 hover:border-orange-200"><div class="relative mb-6 aspect-[16/10] overflow-hidden rounded-2xl"><img src="${serviceImages[i] || "./assets/images/li1.png"}" alt="${x[0]}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" /></div><h3 class="service-card-title text-xl font-semibold leading-tight text-slate-900">${x[0]}</h3><p class="service-card-desc mt-6 text-[16px] leading-8 text-slate-700">${x[1]}</p><div class="service-tags mt-5">${x[2].slice(0,3).map(li=>`<span class="service-tag">${li}</span>`).join("")}</div></article>`).join("");
@@ -322,18 +326,21 @@
     const bubbleSideTriggerEl = document.getElementById("bubbleSideTrigger");
     const capBubblesEl = document.getElementById("capabilityBubbles");
     function toggleCapBubbles(){
+      if (!capBubblesEl) return;
       const active = capBubblesEl.classList.toggle("cap-bubbles-active");
-      servicesTitleEl.setAttribute("aria-expanded", active ? "true" : "false");
-      bubbleSideTriggerEl.setAttribute("aria-expanded", active ? "true" : "false");
+      if (servicesTitleEl) servicesTitleEl.setAttribute("aria-expanded", active ? "true" : "false");
+      if (bubbleSideTriggerEl) bubbleSideTriggerEl.setAttribute("aria-expanded", active ? "true" : "false");
     }
-    servicesTitleEl.addEventListener("click", toggleCapBubbles);
-    bubbleSideTriggerEl.addEventListener("click", toggleCapBubbles);
-    servicesTitleEl.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        toggleCapBubbles();
-      }
-    });
+    if (servicesTitleEl && bubbleSideTriggerEl && capBubblesEl) {
+      servicesTitleEl.addEventListener("click", toggleCapBubbles);
+      bubbleSideTriggerEl.addEventListener("click", toggleCapBubbles);
+      servicesTitleEl.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleCapBubbles();
+        }
+      });
+    }
 
     const heroVideo = document.getElementById("heroVideo");
     function applyHeroVideoSource(){ const m=window.matchMedia("(max-width: 768px)").matches; const s=m?heroVideo.dataset.srcMobile:heroVideo.dataset.srcDesktop; if(heroVideo.getAttribute("src")!==s){ heroVideo.setAttribute("src",s); heroVideo.load(); heroVideo.play().catch(()=>{});} }

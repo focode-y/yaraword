@@ -356,12 +356,40 @@ main .service-tag {
   position: relative !important;
   right: auto !important;
   top: auto !important;
-  width: min(720px, 100%) !important;
-  margin: 1rem auto 0 !important;
+  width: min(1320px, 100%) !important;
+  margin: 0.75rem auto 0 !important;
   display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(320px, 1fr));
+  gap: 20px;
   justify-items: stretch;
+}
+
+#capabilityToggle .cap-bubble {
+  min-height: 220px;
+  padding: 18px 22px;
+}
+
+#capabilityToggle .cap-bubble-title {
+  white-space: nowrap;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#capabilityToggle .cap-bubble-body {
+  font-size: 16px !important;
+  line-height: 1.9 !important;
+}
+
+#capabilityToggle .cap-bubble-1 .cap-bubble-title {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  font-size: 16px !important;
+  line-height: 1.9 !important;
+  color: #c2410c !important;
+  font-weight: 600 !important;
 }
 
 .cap-bubble {
