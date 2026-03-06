@@ -53,7 +53,7 @@
   <main class="flex-1">
     <div class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/35 to-white">
       <section id="hero" class="relative left-1/2 h-[56vh] w-screen -translate-x-1/2 overflow-hidden border-y border-slate-200 sm:h-[64vh] lg:h-[72vh]">
-        <video id="heroVideo" class="absolute inset-0 h-full w-full object-cover brightness-110 saturate-90" autoplay loop muted playsinline preload="none" src="./assets/videos/hero.mp4" data-src-mobile="./assets/videos/hero-mobile.mp4" data-src-desktop="./assets/videos/hero.mp4"></video>
+        <video id="heroVideo" class="absolute inset-0 h-full w-full object-cover brightness-110 saturate-90" autoplay loop muted playsinline webkit-playsinline preload="metadata" poster="./assets/images/yara.jpg" src="./assets/videos/Hero.mp4" data-src-mobile="./assets/videos/hero-mobile.mp4" data-src-desktop="./assets/videos/Hero.mp4"></video>
         <div class="absolute inset-0 flex items-center">
           <div class="mx-auto w-full max-w-[1280px] px-4 sm:px-6 lg:px-8">
             <div class="hero-inner">
@@ -343,7 +343,31 @@
     }
 
     const heroVideo = document.getElementById("heroVideo");
-    function applyHeroVideoSource(){ const m=window.matchMedia("(max-width: 768px)").matches; const s=m?heroVideo.dataset.srcMobile:heroVideo.dataset.srcDesktop; if(heroVideo.getAttribute("src")!==s){ heroVideo.setAttribute("src",s); heroVideo.load(); heroVideo.play().catch(()=>{});} }
+    function safePlayHeroVideo(){
+      if (!heroVideo) return;
+      heroVideo.muted = true;
+      heroVideo.setAttribute("muted", "");
+      heroVideo.setAttribute("playsinline", "");
+      heroVideo.setAttribute("webkit-playsinline", "");
+      heroVideo.play().catch(()=>{});
+    }
+    function applyHeroVideoSource(){
+      if (!heroVideo) return;
+      const m = window.matchMedia("(max-width: 768px)").matches;
+      const mobileSrc = heroVideo.dataset.srcMobile;
+      const desktopSrc = heroVideo.dataset.srcDesktop;
+      const nextSrc = m ? mobileSrc : desktopSrc;
+      const currentSrc = heroVideo.getAttribute("src");
+      if (currentSrc !== nextSrc) {
+        heroVideo.setAttribute("src", nextSrc);
+        heroVideo.load();
+      }
+      safePlayHeroVideo();
+    }
+    if (heroVideo) {
+      heroVideo.addEventListener("loadedmetadata", safePlayHeroVideo);
+      heroVideo.addEventListener("error", safePlayHeroVideo);
+    }
     applyHeroVideoSource(); window.addEventListener("resize",applyHeroVideoSource); window.addEventListener("orientationchange",applyHeroVideoSource);
 
     const menuBtn = document.getElementById("menuBtn"), mobileNav = document.getElementById("mobileNav"), menuCloseBtn = document.getElementById("menuCloseBtn"), mobileNavBackdrop = document.getElementById("mobileNavBackdrop"), scrollBar=document.getElementById("scrollBar"), navItems=document.querySelectorAll("a[data-nav]");
