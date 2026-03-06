@@ -21,6 +21,15 @@
   <meta name="twitter:title" content="Yara Code｜构建你的数字产品" />
   <meta name="twitter:description" content="AI 自动化工具，网站：yaracodes.com" />
   <meta name="twitter:image" content="https://www.yaracodes.com/assets/images/yaralogo.png" />
+  <style>
+    #avatarVideo {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    #avatarVideo.is-ready {
+      opacity: 1;
+    }
+  </style>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./styles.css" />
@@ -87,7 +96,7 @@
                 <div class="avatar-frame" style="position:relative;overflow:hidden;width:260px;height:260px;border-radius:50%;">
                   <div class="avatar-ring"></div>
                   <div class="avatar-ring-2"></div>
-                  <video id="avatarVideo" class="avatar-img" src="./assets/videos/yara1.mp4" muted playsinline webkit-playsinline loop autoplay preload="metadata" aria-label="头像视频" style="display:block;width:240px;height:240px;margin:10px;border-radius:50%;object-fit:cover;"></video>
+                  <video id="avatarVideo" class="avatar-img" src="./assets/videos/yara1.mp4" muted playsinline webkit-playsinline loop autoplay preload="metadata" poster="./assets/images/yara.jpg" width="240" height="240" aria-label="头像视频" style="display:block;width:240px;height:240px;margin:10px;border-radius:50%;object-fit:cover;"></video>
                   <div class="avatar-corner tl"></div>
                   <div class="avatar-corner tr"></div>
                   <div class="avatar-corner bl"></div>
@@ -391,6 +400,12 @@
     }
     if (avatarVideo && window.matchMedia("(max-width: 768px)").matches) {
       avatarVideo.pause();
+    }
+    if (avatarVideo) {
+      const revealAvatarVideo = () => avatarVideo.classList.add("is-ready");
+      avatarVideo.addEventListener("canplay", revealAvatarVideo, { once: true });
+      avatarVideo.addEventListener("loadeddata", revealAvatarVideo, { once: true });
+      setTimeout(revealAvatarVideo, 1200);
     }
     applyHeroVideoSource(); window.addEventListener("resize",applyHeroVideoSource); window.addEventListener("orientationchange",applyHeroVideoSource);
 
