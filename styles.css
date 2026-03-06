@@ -339,12 +339,15 @@ main .service-tag {
 }
 
 #intent .bubble-side-trigger.intent-trigger {
-  position: static;
-  right: auto;
-  top: auto;
-  z-index: auto;
-  margin: 1rem auto 0;
-  display: inline-flex;
+  position: relative !important;
+  right: auto !important;
+  top: auto !important;
+  left: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  z-index: 2 !important;
+  margin: 1rem auto 0 !important;
+  display: inline-flex !important;
 }
 
 .cap-bubble {
