@@ -419,7 +419,10 @@
       safePlayHeroVideo();
     }
     if (heroVideo) {
-      heroVideo.addEventListener("loadedmetadata", safePlayHeroVideo);
+      heroVideo.addEventListener("loadedmetadata", () => {
+        safePlayHeroVideo();
+        markHeroReady();
+      }, { once: true });
       heroVideo.addEventListener("error", safePlayHeroVideo);
       heroVideo.addEventListener("canplay", markHeroReady, { once: true });
       heroVideo.addEventListener("loadeddata", markHeroReady, { once: true });
@@ -430,9 +433,11 @@
         setTimeout(() => {
           if (!heroVideo.classList.contains("is-ready")) {
             safePlayHeroVideo();
-            if (heroVideo.readyState >= 1) markHeroReady();
+            heroVideo.classList.add("is-ready");
+            if (heroSection) heroSection.classList.add("hero-ready");
+            if (heroVideo.readyState >= 1) initAvatarVideoAfterHeroReady();
           }
-        }, 1200);
+        }, 900);
       }
     }
     if (avatarVideo) {
