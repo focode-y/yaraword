@@ -22,6 +22,16 @@
   <meta name="twitter:description" content="AI 自动化工具，网站：yaracodes.com" />
   <meta name="twitter:image" content="https://www.yaracodes.com/assets/images/yaralogo.png" />
   <style>
+    #hero {
+      background: #ffffff;
+    }
+    #heroVideo {
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    #heroVideo.is-ready {
+      opacity: 1;
+    }
     #avatarVideo {
       opacity: 0;
       transition: opacity 0.2s ease;
@@ -96,7 +106,7 @@
                 <div class="avatar-frame" style="position:relative;overflow:hidden;width:260px;height:260px;border-radius:50%;">
                   <div class="avatar-ring"></div>
                   <div class="avatar-ring-2"></div>
-                  <video id="avatarVideo" class="avatar-img" src="./assets/videos/yara1.mp4" muted playsinline webkit-playsinline loop autoplay preload="metadata" poster="./assets/images/yara.jpg" width="240" height="240" aria-label="头像视频" style="display:block;width:240px;height:240px;margin:10px;border-radius:50%;object-fit:cover;"></video>
+                  <video id="avatarVideo" class="avatar-img" data-src="./assets/videos/yara1.mp4" muted playsinline webkit-playsinline loop preload="none" poster="./assets/images/yara.jpg" width="240" height="240" aria-label="头像视频" style="display:block;width:240px;height:240px;margin:10px;border-radius:50%;object-fit:cover;"></video>
                   <div class="avatar-corner tl"></div>
                   <div class="avatar-corner tr"></div>
                   <div class="avatar-corner bl"></div>
@@ -367,8 +377,20 @@
       });
     }
 
+    const heroSection = document.getElementById("hero");
     const heroVideo = document.getElementById("heroVideo");
     const avatarVideo = document.getElementById("avatarVideo");
+    let avatarInitialized = false;
+    function initAvatarVideoAfterHeroReady() {
+      if (!avatarVideo || avatarInitialized) return;
+      avatarInitialized = true;
+      const src = avatarVideo.dataset.src;
+      if (src) {
+        avatarVideo.setAttribute("src", src);
+        avatarVideo.load();
+      }
+      avatarVideo.play().catch(()=>{});
+    }
     function safePlayHeroVideo(){
       if (!heroVideo) return;
       heroVideo.muted = true;
@@ -376,6 +398,12 @@
       heroVideo.setAttribute("playsinline", "");
       heroVideo.setAttribute("webkit-playsinline", "");
       heroVideo.play().catch(()=>{});
+    }
+    function markHeroReady() {
+      if (!heroVideo) return;
+      heroVideo.classList.add("is-ready");
+      if (heroSection) heroSection.classList.add("hero-ready");
+      initAvatarVideoAfterHeroReady();
     }
     function applyHeroVideoSource(){
       if (!heroVideo) return;
@@ -393,19 +421,17 @@
     if (heroVideo) {
       heroVideo.addEventListener("loadedmetadata", safePlayHeroVideo);
       heroVideo.addEventListener("error", safePlayHeroVideo);
-      heroVideo.addEventListener("canplay", () => {
-        const isMobile = window.matchMedia("(max-width: 768px)").matches;
-        if (isMobile && avatarVideo) avatarVideo.play().catch(()=>{});
-      });
+      heroVideo.addEventListener("canplay", markHeroReady, { once: true });
+      heroVideo.addEventListener("loadeddata", markHeroReady, { once: true });
     }
-    if (avatarVideo && window.matchMedia("(max-width: 768px)").matches) {
+    if (avatarVideo) {
       avatarVideo.pause();
+      avatarVideo.removeAttribute("src");
     }
     if (avatarVideo) {
       const revealAvatarVideo = () => avatarVideo.classList.add("is-ready");
       avatarVideo.addEventListener("canplay", revealAvatarVideo, { once: true });
       avatarVideo.addEventListener("loadeddata", revealAvatarVideo, { once: true });
-      setTimeout(revealAvatarVideo, 1200);
     }
     applyHeroVideoSource(); window.addEventListener("resize",applyHeroVideoSource); window.addEventListener("orientationchange",applyHeroVideoSource);
 
