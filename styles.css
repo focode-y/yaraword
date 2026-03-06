@@ -338,6 +338,15 @@ main .service-tag {
   opacity: 0.85;
 }
 
+#intent .bubble-side-trigger.intent-trigger {
+  position: static;
+  right: auto;
+  top: auto;
+  z-index: auto;
+  margin: 1rem auto 0;
+  display: inline-flex;
+}
+
 .cap-bubble {
   position: relative;
   border-radius: 28px;
@@ -622,6 +631,10 @@ main li {
 
   .bubble-side-trigger {
     display: none !important;
+  }
+
+  #intent .bubble-side-trigger.intent-trigger {
+    display: inline-flex !important;
   }
 
   #services article,
