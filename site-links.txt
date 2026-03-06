@@ -9,5 +9,5 @@
 养老金计算器 | https://tool.yaracodes.com | 退休金测算页面示例 | 年金計算ツール | 年金試算ページの例 | Pension Calculator | Sample retirement calculation page
 全球新闻汇总 | https://news.yaracodes.com | 国际要闻与全球动态更新 |世界ニュース総覧 | 国際ニュースと世界動向の最新情報 |Global News Digest | International headlines and global updates
 民宿代理网站 | https://demo.yaracodes.com |  民宿代理与短租平台网站示例 | 民泊代理サイト | 民泊代理・短期レンタルプラットフォームのウェブサイト例 | Minpaku Agency Platform | Example website for a minpaku agency and short-term rental platform
-客户预约页 | https://www.yaracodes.com | 咨询预约与线索收集页面 | 予約ページ | 相談予約とリード収集ページ | Client Booking Page | Inquiry booking and lead capture
+学生学习小屋 | https://edu.yaracodes.com | 学生学习与练习平台网站示例 | 学習サイト | 学生向け学習・練習プラットフォームの例 | Student Learning Site | Example student learning and practice platform
 
