@@ -423,6 +423,17 @@
       heroVideo.addEventListener("error", safePlayHeroVideo);
       heroVideo.addEventListener("canplay", markHeroReady, { once: true });
       heroVideo.addEventListener("loadeddata", markHeroReady, { once: true });
+      // If the video was already loaded before listeners were attached, reveal immediately.
+      if (heroVideo.readyState >= 2) {
+        markHeroReady();
+      } else {
+        setTimeout(() => {
+          if (!heroVideo.classList.contains("is-ready")) {
+            safePlayHeroVideo();
+            if (heroVideo.readyState >= 1) markHeroReady();
+          }
+        }, 1200);
+      }
     }
     if (avatarVideo) {
       avatarVideo.pause();
