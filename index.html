@@ -84,10 +84,10 @@
                 </div>
               </div>
               <div class="hero-avatar-wrap">
-                <div class="avatar-frame">
+                <div class="avatar-frame" style="position:relative;overflow:hidden;width:260px;height:260px;border-radius:50%;">
                   <div class="avatar-ring"></div>
                   <div class="avatar-ring-2"></div>
-                  <video class="avatar-img" src="./assets/videos/yara1.mp4" muted playsinline loop autoplay preload="metadata" aria-label="头像视频"></video>
+                  <video id="avatarVideo" class="avatar-img" src="./assets/videos/yara1.mp4" muted playsinline webkit-playsinline loop autoplay preload="metadata" aria-label="头像视频" style="display:block;width:240px;height:240px;margin:10px;border-radius:50%;object-fit:cover;"></video>
                   <div class="avatar-corner tl"></div>
                   <div class="avatar-corner tr"></div>
                   <div class="avatar-corner bl"></div>
@@ -359,6 +359,7 @@
     }
 
     const heroVideo = document.getElementById("heroVideo");
+    const avatarVideo = document.getElementById("avatarVideo");
     function safePlayHeroVideo(){
       if (!heroVideo) return;
       heroVideo.muted = true;
@@ -383,6 +384,13 @@
     if (heroVideo) {
       heroVideo.addEventListener("loadedmetadata", safePlayHeroVideo);
       heroVideo.addEventListener("error", safePlayHeroVideo);
+      heroVideo.addEventListener("canplay", () => {
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        if (isMobile && avatarVideo) avatarVideo.play().catch(()=>{});
+      });
+    }
+    if (avatarVideo && window.matchMedia("(max-width: 768px)").matches) {
+      avatarVideo.pause();
     }
     applyHeroVideoSource(); window.addEventListener("resize",applyHeroVideoSource); window.addEventListener("orientationchange",applyHeroVideoSource);
 
